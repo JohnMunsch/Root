@@ -1,0 +1,18 @@
+body {
+  font-family: verdana, arial, helvetica, sans-serif;
+}
+
+.media-left img {
+  width: 64px;
+}
+
+.user {
+  background-color: lightslategrey;
+  padding: 4px;
+  margin-bottom: 5px;
+  color: whitesmoke;
+}
+
+.currentPage {
+  font-weight: bold;
+}

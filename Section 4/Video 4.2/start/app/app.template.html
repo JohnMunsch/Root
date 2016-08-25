@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>@Input example</h1>
+
+      <icon-with-text icon="app/angular.svg" text="Logo"></icon-with-text>
+
+      <h1>@Output example</h1>
+
+      <alert message="You have been signed back in {{ user }}. Please try your action again."
+             *ngIf="validUser()"></alert>
+      <alert message="Leave and don't come back." *ngIf="user === null"></alert>
+
+      <div>
+        <button type="button" class="btn btn-primary" (click)="triggerSignIn(signIn)">
+          Action which requires authentication</button>
+      </div>
+
+      <sign-in #signIn></sign-in>
+    </div>
+  </div>
+</div>

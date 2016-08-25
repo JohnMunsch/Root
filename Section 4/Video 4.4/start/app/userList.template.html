@@ -1,0 +1,28 @@
+<ul>
+  <div class="user" *ngFor="let user of data()">
+    <div class="media">
+      <div class="media-left">
+        <img class="media-object" [src]="user.avatar" alt="...">
+      </div>
+      <div class="media-body">
+        <a>
+          <h4 class="media-heading">{{ user.first_name }} {{ user.last_name }}</h4>
+        </a>
+        ...
+      </div>
+    </div>
+  </div>
+</ul>
+<nav>
+  <ul class="pagination">
+    <li>
+      <a aria-label="Previous">&laquo;</a>
+    </li>
+    <li *ngFor="let pageNumber of pages()">
+      <a (click)="page(pageNumber)">{{ pageNumber }}</a>
+    </li>
+    <li>
+      <a aria-label="Next">&raquo;</a>
+    </li>
+  </ul>
+</nav>

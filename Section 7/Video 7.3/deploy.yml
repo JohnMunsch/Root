@@ -1,0 +1,19 @@
+---
+- hosts: webservers
+  vars:
+    site: a2essentials
+  tasks:
+    - git: repo=https://github.com/JohnMunsch/Video-7.2-Example.git
+           dest=/var/www/{{ site }}
+           accept_hostkey=yes
+
+    - npm: path=/var/www/{{ site }} name="gulpjs/gulp-cli" global=yes
+
+    - npm: path=/var/www/{{ site }} name=typescript global=yes
+
+    - npm: path=/var/www/{{ site }}
+
+    - command: gulp travis
+      args:
+        chdir: /var/www/{{ site }}
+        creates: /var/www/{{ site }}/dist

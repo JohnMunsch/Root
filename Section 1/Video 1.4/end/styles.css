@@ -1,0 +1,8 @@
+body {
+  font-family: verdana, arial, helvetica, sans-serif;
+}
+
+.col-sm-12 {
+  display: flex;
+  justify-content: center;
+}

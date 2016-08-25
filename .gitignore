@@ -1,0 +1,8 @@
+node_modules/
+coverage/
+dist/
+typings/
+.idea
+.vagrant
+npm-debug.log
+.DS_Store

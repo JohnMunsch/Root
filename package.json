@@ -1,0 +1,23 @@
+{
+  "name": "Root",
+  "version": "1.0.0",
+  "description": "Code, links, and reference material for the Packt Publishing course *Mastering Angular 2*.",
+  "main": "gulpfile.js",
+  "dependencies": {},
+  "devDependencies": {
+    "del": "^2.2.0",
+    "gulp": "gulpjs/gulp#4.0",
+    "lodash": "^4.13.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@bitbucket.org/johnmunsch/Root.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/johnmunsch/Root#readme"
+}

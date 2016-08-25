@@ -1,0 +1,5 @@
+---
+- hosts: webservers
+  tasks:
+    - name: test connection
+      ping:

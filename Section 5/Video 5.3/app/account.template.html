@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div>
+        <h1>{{ account.name }}</h1>
+        <div>
+          <strong>Balance:</strong> {{ myAccount() ? account.balance : 'Unknown' }}
+        </div>
+
+        <div class="controls">
+          <button type="button" class="btn btn-primary"
+                (click)="deleteAccount()" [disabled]="!myAccount()">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

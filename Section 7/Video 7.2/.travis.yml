@@ -1,0 +1,7 @@
+language: node_js
+node_js:
+  - "4.4.7"
+before_script:
+  - npm install -g "gulpjs/gulp-cli" typescript
+  - npm install
+script: gulp travis

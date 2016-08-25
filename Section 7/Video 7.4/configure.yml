@@ -1,0 +1,52 @@
+---
+- hosts: webservers
+  vars:
+    site: a2essentials
+  tasks:
+    # Update repositories cache and install several packages I need or like to
+    # have (for example, I use emacs rather than vi).
+    - apt: pkg={{item}} state=installed update_cache=yes
+      with_items:
+        - apache2
+        - emacs23
+        - git
+        - unzip
+        - xz-utils
+
+    - get_url: url=https://nodejs.org/dist/v4.4.4/node-v4.4.4-linux-x64.tar.xz dest=~/node-v4.4.4-linux.x64.tar.xz
+
+    - command: tar -C /usr/local --strip-components 1 -xJf node-v4.4.4-linux.x64.tar.xz
+      args:
+          chdir: /root
+          creates: /usr/local/bin/npm
+
+    # Enable Apache modules we'll be using.
+    - apache2_module: name={{item}} state=present
+      with_items:
+        - expires
+        - headers
+        - rewrite
+        - proxy_http
+      notify:
+        - restart apache2
+
+    # Copy the virtual host file needed for Apache.
+    - copy: src={{site}}.conf dest=/etc/apache2/sites-available/
+
+    # Disable the default Apache site.
+    - command: a2dissite 000-default
+      args:
+        removes: /etc/apache2/sites-enabled/000-default.conf
+      notify:
+        - restart apache2
+
+    # Enable the site on Apache so it starts serving it up.
+    - command: a2ensite {{ site }}
+      args:
+        creates: /etc/apache2/sites-enabled/{{ site }}.conf
+      notify:
+        - restart apache2
+
+  handlers:
+    - name: restart apache2
+      service: name=apache2 state=restarted
