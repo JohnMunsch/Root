@@ -19,7 +19,7 @@ import { UserList } from './userList.component';
             <user-list></user-list>
           </div>
         </div>
-      </div>      
+      </div>
     </div>`
 })
 export class AppComponent {
