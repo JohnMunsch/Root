@@ -89,10 +89,10 @@
           </div>
           <div class="mdl-card__supporting-text mdl-color-text--grey-600">
             <div class="mdl-card__supporting- text mdl-color- text-- grey-600" [ngSwitch]="options.switchValue">
-              <span *ngSwitchWhen="'type1'">
+              <span *ngSwitchCase="'type1'">
                 Update Type 1
               </span>
-              <span *ngSwitchWhen="'type2'">
+              <span *ngSwitchCase="'type2'">
                 Update Type 2
               </span>
               <span *ngSwitchDefault>
