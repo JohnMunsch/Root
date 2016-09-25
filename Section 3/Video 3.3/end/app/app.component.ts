@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { bootstrap } from '@angular/platform-browser-dynamic';
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { BasicFilterPipe } from './basicFilter.pipe';
 
@@ -26,8 +31,8 @@ export class BasicForm {
         <h2>Advanced Form</h2>
 
         <form #f="ngForm" (ngSubmit)="onSubmit(f.value)">
-          <p><label>Username: <input ngControl="username" required></label></p>
-          <p><label>Password: <input type="password" ngControl="password" required minlength="8"></label></p>
+          <p><label>Username: <input name="username" required></label></p>
+          <p><label>Password: <input type="password" name="password" required minlength="8"></label></p>
           <button type="submit" [disabled]="!f.form.valid">Submit!</button>
         </form>
 
@@ -38,7 +43,6 @@ export class BasicForm {
           <li *ngFor="let item of items | basicFilterPipe:searchTerm">{{ item }}</li>
         </ul>
       </div>`,
-    pipes: [ BasicFilterPipe ],
     styles: [
       '.ng-invalid { border-color: red; }'
     ]
@@ -57,10 +61,19 @@ export class AdvancedForm {
   template: `
     <basic-form></basic-form>
     <advanced-form></advanced-form>
-  `,
-  directives: [ BasicForm, AdvancedForm ]
+  `
 })
 export class AppComponent {
 }
 
-bootstrap(AppComponent);
+// Create a module for our application.
+@NgModule({
+  imports: [ BrowserModule, FormsModule ],
+  declarations: [ AppComponent, BasicForm, AdvancedForm, BasicFilterPipe ],
+  bootstrap: [ AppComponent ]
+})
+export class AppModule { }
+
+// Bootstrap the main module.
+const platform = platformBrowserDynamic();
+platform.bootstrapModule(AppModule);
