@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { bootstrap } from '@angular/platform-browser-dynamic';
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { BasicSearchPipe } from './basicSearch.pipe';
 
@@ -35,8 +40,7 @@ import { BasicSearchPipe } from './basicSearch.pipe';
         <li *ngFor="let movie of movies | basicSearch:searchTerm">
           {{ movie.name }} - {{ movie.description }}
         </li>
-      </ul>`,
-    pipes: [ BasicSearchPipe ]
+      </ul>`
 })
 export class AppComponent {
   movies = [
@@ -55,4 +59,17 @@ export class AppComponent {
   stringValue = "Hello World";
 }
 
-bootstrap(AppComponent);
+// Create a module for our application.
+@NgModule({
+  imports: [ BrowserModule, FormsModule ],
+  declarations: [
+    AppComponent,
+    BasicSearchPipe
+  ],
+  bootstrap: [ AppComponent ]
+})
+export class AppModule { }
+
+// Bootstrap the main module.
+const platform = platformBrowserDynamic();
+platform.bootstrapModule(AppModule);
