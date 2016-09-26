@@ -9,7 +9,7 @@ Code, links, and reference material for the Packt Publishing course
 
 ## Important Notes!
 
-*This source code is current with the rc.4 release of Angular 2.*
+*This source code is current with the 2.0.0 final release of Angular 2.*
 
 Each video gets its own directory for source. In most of those 
 directories there is a start directory, which contains the source as 
