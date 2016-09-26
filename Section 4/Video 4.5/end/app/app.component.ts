@@ -1,16 +1,21 @@
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { Component, provide } from '@angular/core';
-import { HTTP_PROVIDERS } from '@angular/http';
-import { bootstrap } from '@angular/platform-browser-dynamic';
-import { ROUTER_DIRECTIVES } from '@angular/router';
+import { Component } from '@angular/core';
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
+
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import 'rxjs/Rx';
 
-import { APP_ROUTER_PROVIDERS } from './app.router';
+import { appRoutingProviders, routing } from './app.router';
 import {
     Users,
     UsersHttp
 } from './users.service';
+import { PeopleComponent } from './people.component';
+import { UserListComponent } from './userList.component';
 
 @Component({
   selector: 'app',
@@ -22,15 +27,27 @@ import {
           <router-outlet></router-outlet>
         </div>
       </div>
-    </div>`,
-  directives: [ ROUTER_DIRECTIVES ]
+    </div>`
 })
 export class AppComponent {
 }
 
-bootstrap(AppComponent, [
-  provide(Users, { useClass: UsersHttp }),
-  HTTP_PROVIDERS,
-  APP_ROUTER_PROVIDERS,
-  { provide: LocationStrategy, useClass: HashLocationStrategy }
-]).catch(err => console.error(err));
+// Create a module for our application.
+@NgModule({
+  imports: [ BrowserModule, HttpModule, routing ],
+  declarations: [
+    AppComponent,
+    PeopleComponent,
+    UserListComponent
+  ],
+  bootstrap: [ AppComponent ],
+  providers: [
+    appRoutingProviders,
+    { provide: Users, useClass: UsersHttp }
+  ]
+})
+export class AppModule { }
+
+// Bootstrap the main module.
+const platform = platformBrowserDynamic();
+platform.bootstrapModule(AppModule);

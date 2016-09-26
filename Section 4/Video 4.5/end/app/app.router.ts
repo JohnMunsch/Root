@@ -1,17 +1,19 @@
-import { provideRouter, RouterConfig } from '@angular/router';
+import { ModuleWithProviders } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
 import { PeopleComponent } from './people.component';
-import { UserList } from './userList.component';
+import { UserListComponent } from './userList.component';
 
 import { Guard } from './guard.service';
 
-const routes : RouterConfig = [
-  { path: 'people', component: UserList },
+const routes : Routes = [
+  { path: 'people', component: UserListComponent },
   { path: 'people/:id', component: PeopleComponent, canActivate: [ Guard ] },
   { path: '**', redirectTo: '/people' }
 ];
 
-export const APP_ROUTER_PROVIDERS = [
-    provideRouter(routes),
-    Guard
-  ];
+export const appRoutingProviders: any[] = [
+  Guard
+];
+
+export const routing: ModuleWithProviders = RouterModule.forRoot(routes, { useHash: true });
