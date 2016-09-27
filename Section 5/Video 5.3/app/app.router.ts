@@ -1,11 +1,11 @@
-import { provideRouter, RouterConfig } from '@angular/router';
-import {AccountComponent} from "./account.component";
+import { ModuleWithProviders } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
 
-const routes : RouterConfig = [
+import { AccountComponent } from "./account.component";
+
+const routes : Routes = [
   { path: 'account/:id', component: AccountComponent },
   { path: '**', redirectTo: '/account/2' }
 ];
 
-export const APP_ROUTER_PROVIDERS = [
-    provideRouter(routes)
-  ];
+export const routing: ModuleWithProviders = RouterModule.forRoot(routes);
