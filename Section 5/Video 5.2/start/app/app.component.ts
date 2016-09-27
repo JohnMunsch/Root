@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
-import { bootstrap } from '@angular/platform-browser-dynamic';
-import { HTTP_PROVIDERS } from '@angular/http';
+
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { HttpModule } from '@angular/http';
+
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { CrayonsService } from './crayons.service';
 
@@ -12,9 +16,7 @@ import { CrayonsService } from './crayons.service';
           <td>{{ crayon.name }}</td>
           <td [style.background-color]="crayon.hexColor">{{ crayon.hexColor }}</td>
         </tr>      
-      </table>
-`,
-  providers: [ CrayonsService ]
+      </table>`
 })
 export class AppComponent {
   crayons = [];
@@ -27,4 +29,17 @@ export class AppComponent {
   }
 }
 
-bootstrap(AppComponent, HTTP_PROVIDERS);
+// Create a module for our application.
+@NgModule({
+  imports: [ BrowserModule, HttpModule ],
+  declarations: [
+    AppComponent
+  ],
+  bootstrap: [ AppComponent ],
+  providers: [ CrayonsService ]
+})
+export class AppModule { }
+
+// Bootstrap the main module.
+const platform = platformBrowserDynamic();
+platform.bootstrapModule(AppModule);
