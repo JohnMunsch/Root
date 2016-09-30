@@ -11,6 +11,8 @@ Code, links, and reference material for the Packt Publishing course
 
 *This source code is current with the rc.4 release of Angular 2.*
 
+**For examples upgraded to Angular 2 final, please pull the branch named "final" on Github. There are notes in the README.md of that branch detailing a couple of examples which are not yet working with the final release.**
+
 Each video gets its own directory for source. In most of those 
 directories there is a start directory, which contains the source as 
 it was at the start of the video before I add to it or make changes, 
